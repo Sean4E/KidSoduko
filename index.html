@@ -14,10 +14,12 @@
             link.rel = 'manifest';
             link.href = 'manifest.json';
             document.head.appendChild(link);
-            
+
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/sw.js').catch(() => {});
+                    // Use relative path for GitHub Pages compatibility
+                    const swPath = window.location.pathname.replace(/\/[^\/]*$/, '/sw.js');
+                    navigator.serviceWorker.register(swPath).catch(() => {});
                 });
             }
         }
@@ -41,6 +43,7 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
 
         body {
@@ -179,8 +182,10 @@
             border: 3px solid transparent;
         }
 
-        .theme-option:hover {
-            transform: scale(1.05);
+        @media (hover: hover) {
+            .theme-option:hover {
+                transform: scale(1.05);
+            }
         }
 
         .theme-option.active {
@@ -220,8 +225,10 @@
             box-shadow: 0 4px 15px var(--shadow);
         }
 
-        .size-btn:hover {
-            transform: translateY(-2px);
+        @media (hover: hover) {
+            .size-btn:hover {
+                transform: translateY(-2px);
+            }
         }
 
         .size-btn.active {
@@ -374,10 +381,13 @@
             font-size: 1.1rem; 
         }
 
-        .cell:hover:not(.fixed) {
-            transform: scale(1.08);
-            box-shadow: 0 4px 15px var(--shadow);
-            z-index: 2;
+        /* Only apply hover on devices with hover capability */
+        @media (hover: hover) {
+            .cell:hover:not(.fixed) {
+                transform: scale(1.08);
+                box-shadow: 0 4px 15px var(--shadow);
+                z-index: 2;
+            }
         }
 
         .cell.selected {
@@ -456,8 +466,10 @@
         .board.size-6 ~ .palette .palette-item { width: 45px; height: 45px; font-size: 1.4rem; }
         .board.size-9 ~ .palette .palette-item { width: 38px; height: 38px; font-size: 1.1rem; border-radius: 12px; }
 
-        .palette-item:hover {
-            transform: scale(1.1);
+        @media (hover: hover) {
+            .palette-item:hover {
+                transform: scale(1.1);
+            }
         }
 
         .palette-item.selected {
@@ -514,8 +526,10 @@
             gap: 8px;
         }
 
-        .action-btn:hover {
-            transform: translateY(-2px);
+        @media (hover: hover) {
+            .action-btn:hover {
+                transform: translateY(-2px);
+            }
         }
 
         .action-btn.primary {
@@ -755,21 +769,129 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Responsive */
+        /* Responsive - Small phones */
         @media (max-width: 400px) {
             .app-container {
                 padding: 10px;
             }
-            
+
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            .logo-icon {
+                font-size: 1.8rem;
+            }
+
+            .player-bar {
+                gap: 10px;
+            }
+
+            .stat-bubble {
+                padding: 6px 12px;
+            }
+
+            .theme-option {
+                width: 60px;
+                height: 60px;
+            }
+
+            .theme-option .theme-icon {
+                font-size: 1.5rem;
+            }
+
+            .size-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
             .cell {
                 border-radius: 8px;
                 font-size: 1.5rem;
             }
-            
+
+            .board.size-9 .cell {
+                font-size: 0.9rem;
+            }
+
             .palette-item {
-                width: 42px;
-                height: 42px;
-                font-size: 1.3rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                border-radius: 12px;
+            }
+
+            .board.size-9 ~ .palette .palette-item {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+                border-radius: 10px;
+            }
+
+            .actions {
+                flex-wrap: wrap;
+            }
+
+            .action-btn {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+
+            .mascot {
+                font-size: 2.5rem;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .mascot-bubble {
+                bottom: 75px;
+                right: 15px;
+                max-width: 160px;
+                font-size: 0.8rem;
+                padding: 10px 14px;
+            }
+
+            .settings-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Very small phones */
+        @media (max-width: 350px) {
+            .size-selector {
+                gap: 5px;
+            }
+
+            .size-btn {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+
+            .actions {
+                gap: 6px;
+            }
+
+            .action-btn {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+                gap: 4px;
+            }
+        }
+
+        /* Desktop/Tablet landscape */
+        @media (min-width: 768px) {
+            .app-container {
+                padding: 20px;
+            }
+
+            .board-container {
+                padding: 20px;
+            }
+
+            .board {
+                max-width: 450px;
             }
         }
 
