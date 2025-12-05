@@ -90,12 +90,6 @@
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -106,6 +100,15 @@
             width: 48px;
             height: 48px;
             animation: bounce 2s ease infinite;
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         @keyframes bounce {
@@ -788,7 +791,7 @@
                 padding: 10px;
             }
 
-            .logo {
+            .logo-text {
                 font-size: 1.6rem;
             }
 
@@ -1031,7 +1034,7 @@
         <header class="header">
             <div class="logo">
                 <img src="favicon.svg" alt="Sudoku Kids" class="logo-icon">
-                <span>Sudoku Kids</span>
+                <span class="logo-text">Sudoku Kids</span>
             </div>
         </header>
 
