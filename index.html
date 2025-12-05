@@ -319,8 +319,8 @@
             gap: 8px;
             padding: 12px;
         }
-        .board.size-6 { 
-            grid-template-columns: repeat(3, 1fr);
+        .board.size-6 {
+            grid-template-columns: repeat(2, 1fr);
             gap: 7px;
             padding: 10px;
         }
@@ -357,7 +357,7 @@
         }
 
         .board.size-6 .box {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(2, 1fr);
             padding: 5px;
         }
@@ -429,6 +429,17 @@
 
         .cell.hint {
             animation: glow 1s ease;
+        }
+
+        .cell.wrong {
+            background: linear-gradient(135deg, rgba(255, 100, 100, 0.4), rgba(255, 150, 150, 0.3));
+            border-color: #ff6b6b;
+            animation: shake 0.4s ease;
+        }
+
+        .cell.right {
+            background: linear-gradient(135deg, rgba(107, 203, 119, 0.3), rgba(74, 222, 128, 0.2));
+            border-color: var(--success);
         }
 
         @keyframes shake {
@@ -556,6 +567,11 @@
         .action-btn.hint {
             background: linear-gradient(135deg, var(--accent), #ffcc00);
             color: var(--text);
+        }
+
+        .action-btn.check {
+            background: linear-gradient(135deg, var(--success), #4ade80);
+            color: white;
         }
 
         .action-btn:disabled {
@@ -1101,6 +1117,9 @@
         <div class="actions">
             <button class="action-btn" onclick="undo()" id="undoBtn" disabled>
                 ↩️ Undo
+            </button>
+            <button class="action-btn check" onclick="checkBoard()" id="checkBtn">
+                ✅ Check
             </button>
             <button class="action-btn hint" onclick="giveHint()" id="hintBtn">
                 💡 Hint
@@ -1833,6 +1852,52 @@
             if (isBoardComplete()) {
                 setTimeout(handleWin, 500);
             }
+        }
+
+        // ============== CHECK ==============
+        function checkBoard() {
+            playSound('tap');
+            let hasErrors = false;
+            let hasCorrect = false;
+
+            // Clear previous check states
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.classList.remove('wrong', 'right');
+            });
+
+            // Check each non-fixed, non-empty cell
+            for (let r = 0; r < gridSize; r++) {
+                for (let c = 0; c < gridSize; c++) {
+                    if (!fixed[r][c] && board[r][c] !== 0) {
+                        const cell = document.querySelector(`.cell[data-row="${r}"][data-col="${c}"]`);
+                        if (board[r][c] === solution[r][c]) {
+                            cell.classList.add('right');
+                            hasCorrect = true;
+                        } else {
+                            cell.classList.add('wrong');
+                            hasErrors = true;
+                        }
+                    }
+                }
+            }
+
+            // Mascot feedback
+            if (hasErrors) {
+                playSound('error');
+                mascotSay(["Some aren't right!", "Check the red ones!", "Keep trying!", "Almost there!"]);
+            } else if (hasCorrect) {
+                playSound('place');
+                mascotSay(["Looking good!", "All correct so far!", "Great job!", "Keep going!"]);
+            } else {
+                mascotSay(["Place some icons first!", "Try filling in cells!", "Pick an icon!"]);
+            }
+
+            // Remove highlighting after 3 seconds
+            setTimeout(() => {
+                document.querySelectorAll('.cell').forEach(cell => {
+                    cell.classList.remove('wrong', 'right');
+                });
+            }, 3000);
         }
 
         // ============== WIN ==============
