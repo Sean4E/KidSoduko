@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background with rounded corners -->
+  <rect x="2" y="2" width="60" height="60" rx="12" ry="12" fill="url(#bgGradient)"/>
+
+  <!-- Gradient definitions -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B5CE7"/>
+      <stop offset="50%" style="stop-color:#FF6B9D"/>
+      <stop offset="100%" style="stop-color:#FFD93D"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 2x2 Grid cells -->
+  <!-- Top left -->
+  <rect x="6" y="6" width="24" height="24" rx="4" fill="white" fill-opacity="0.95"/>
+  <!-- Top right -->
+  <rect x="34" y="6" width="24" height="24" rx="4" fill="white" fill-opacity="0.85"/>
+  <!-- Bottom left -->
+  <rect x="6" y="34" width="24" height="24" rx="4" fill="white" fill-opacity="0.85"/>
+  <!-- Bottom right -->
+  <rect x="34" y="34" width="24" height="24" rx="4" fill="white" fill-opacity="0.95"/>
+
+  <!-- Animal emoji representations as simple shapes -->
+  <!-- Dog (top-left) - brown circle with ears -->
+  <circle cx="18" cy="20" r="8" fill="#8B4513"/>
+  <circle cx="12" cy="12" r="4" fill="#8B4513"/>
+  <circle cx="24" cy="12" r="4" fill="#8B4513"/>
+  <circle cx="15" cy="18" r="2" fill="#222"/>
+  <circle cx="21" cy="18" r="2" fill="#222"/>
+  <ellipse cx="18" cy="23" rx="3" ry="2" fill="#222"/>
+
+  <!-- Cat (top-right) - orange with pointy ears -->
+  <circle cx="46" cy="20" r="8" fill="#FF9500"/>
+  <polygon points="38,14 42,6 44,14" fill="#FF9500"/>
+  <polygon points="54,14 50,6 48,14" fill="#FF9500"/>
+  <circle cx="43" cy="18" r="2" fill="#222"/>
+  <circle cx="49" cy="18" r="2" fill="#222"/>
+  <ellipse cx="46" cy="22" rx="2" ry="1.5" fill="#FF6B9D"/>
+
+  <!-- Bunny (bottom-left) - white with long ears -->
+  <circle cx="18" cy="48" r="8" fill="#F5F5F5"/>
+  <ellipse cx="14" cy="38" rx="3" ry="7" fill="#F5F5F5"/>
+  <ellipse cx="22" cy="38" rx="3" ry="7" fill="#F5F5F5"/>
+  <ellipse cx="14" cy="38" rx="2" ry="5" fill="#FFB6C1"/>
+  <ellipse cx="22" cy="38" rx="2" ry="5" fill="#FFB6C1"/>
+  <circle cx="15" cy="46" r="2" fill="#222"/>
+  <circle cx="21" cy="46" r="2" fill="#222"/>
+  <ellipse cx="18" cy="51" rx="2" ry="1.5" fill="#FFB6C1"/>
+
+  <!-- Bear (bottom-right) - brown with round ears -->
+  <circle cx="46" cy="48" r="8" fill="#A0522D"/>
+  <circle cx="38" cy="42" r="4" fill="#A0522D"/>
+  <circle cx="54" cy="42" r="4" fill="#A0522D"/>
+  <circle cx="38" cy="42" r="2.5" fill="#D2691E"/>
+  <circle cx="54" cy="42" r="2.5" fill="#D2691E"/>
+  <circle cx="43" cy="46" r="2" fill="#222"/>
+  <circle cx="49" cy="46" r="2" fill="#222"/>
+  <ellipse cx="46" cy="51" rx="3" ry="2" fill="#222"/>
+</svg>
