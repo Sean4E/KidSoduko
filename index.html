@@ -157,14 +157,24 @@
 
         .theme-grid {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 10px;
-            overflow-x: auto;
             padding: 5px;
-            scrollbar-width: none;
         }
 
-        .theme-grid::-webkit-scrollbar {
-            display: none;
+        /* On mobile, use horizontal scroll */
+        @media (max-width: 500px) {
+            .theme-grid {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+                scrollbar-width: none;
+            }
+
+            .theme-grid::-webkit-scrollbar {
+                display: none;
+            }
         }
 
         .theme-option {
